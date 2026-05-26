@@ -1,0 +1,11 @@
+Role,Current_Workforce,Required_Workforce,Average_Days_to_Hire,Skill_Gap_Severity,Average_Salary_GBP,Remote_Work_Percentage
+Software Engineer,1500,2200,45,High,45000,60
+Data Scientist,400,750,55,High,50000,50
+Cybersecurity Analyst,300,600,60,High,48000,40
+Cloud Architect,200,450,50,High,60000,70
+DevOps Engineer,350,600,48,High,55000,60
+IT Support Specialist,1200,1300,20,Low,28000,20
+Network Engineer,500,650,35,Medium,40000,30
+UX/UI Designer,450,600,30,Medium,38000,50
+Project Manager (Tech),600,800,40,Medium,45000,40
+AI/Machine Learning Engineer,150,400,65,High,58000,60
