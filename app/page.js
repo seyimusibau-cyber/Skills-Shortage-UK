@@ -1,21 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import { 
-  LayoutDashboard, 
-  BookOpen, 
-  Menu, 
-  X, 
-  TrendingUp, 
-  GraduationCap, 
-  Award, 
-  School, 
-  Laptop, 
-  UserCheck, 
-  Users, 
-  Heart, 
-  HeartHandshake, 
-  Handshake, 
+import {
+  LayoutDashboard,
+  BookOpen,
+  Menu,
+  X,
+  TrendingUp,
+  GraduationCap,
+  Award,
+  School,
+  Laptop,
+  UserCheck,
+  Users,
+  Heart,
+  HeartHandshake,
+  Handshake,
   Cpu,
   Info,
   DollarSign,
@@ -109,11 +109,11 @@ export default function Home() {
   const showTooltip = (e, content) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const parentRect = e.currentTarget.ownerSVGElement.getBoundingClientRect();
-    
+
     // Position tooltip relative to SVG container
     const x = rect.left - parentRect.left + rect.width / 2;
     const y = rect.top - parentRect.top - 10;
-    
+
     setTooltip({
       visible: true,
       x,
@@ -133,8 +133,8 @@ export default function Home() {
         <div className={styles.logoHeader}>
           <span className={styles.logoTitle}>NE Tech Skills</span>
         </div>
-        <button 
-          className={styles.mobileMenuBtn} 
+        <button
+          className={styles.mobileMenuBtn}
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           aria-label="Toggle navigation menu"
         >
@@ -152,7 +152,7 @@ export default function Home() {
         </div>
 
         <nav className={styles.navSection}>
-          <button 
+          <button
             className={`${styles.navButton} ${activeTab === "dashboard" ? styles.navButtonActive : ""}`}
             onClick={() => {
               setActiveTab("dashboard");
@@ -162,7 +162,7 @@ export default function Home() {
             <LayoutDashboard size={18} />
             Dashboard & Analytics
           </button>
-          <button 
+          <button
             className={`${styles.navButton} ${activeTab === "strategies" ? styles.navButtonActive : ""}`}
             onClick={() => {
               setActiveTab("strategies");
@@ -191,7 +191,7 @@ export default function Home() {
           <div className="animate-fade-in">
             {/* Header */}
             <div className={styles.headerContainer}>
-              <h1 className={styles.pageTitle}>North East UK Tech Skills Shortage</h1>
+              <h1 className={styles.pageTitle}>Seyi's North East UK Tech Skills Shortage</h1>
               <p className={styles.pageSubtitle}>
                 Explore real-time simulated telemetry representing the current state and shortage of the tech workforce in the North East.
               </p>
@@ -237,7 +237,7 @@ export default function Home() {
 
             {/* Charts Grid */}
             <div className={styles.chartsGrid}>
-              
+
               {/* Grouped Bar Chart (Custom SVG) */}
               <div className={styles.chartCard}>
                 <h3 className={styles.chartTitle}>
@@ -253,10 +253,10 @@ export default function Home() {
                     </div>
                   </div>
                 </h3>
-                
+
                 <div style={{ position: "relative", flex: 1, display: "flex", flexDirection: "column" }}>
-                  <svg 
-                    viewBox="0 0 800 350" 
+                  <svg
+                    viewBox="0 0 800 350"
                     className={styles.svgWorkspace}
                     style={{ width: "100%", height: "290px", overflow: "visible" }}
                   >
@@ -265,19 +265,19 @@ export default function Home() {
                       const y = 280 - (val / 2400) * 250;
                       return (
                         <g key={val} opacity={0.85}>
-                          <line 
-                            x1="50" 
-                            y1={y} 
-                            x2="780" 
-                            y2={y} 
-                            stroke="rgba(255,255,255,0.06)" 
-                            strokeWidth="1" 
+                          <line
+                            x1="50"
+                            y1={y}
+                            x2="780"
+                            y2={y}
+                            stroke="rgba(255,255,255,0.06)"
+                            strokeWidth="1"
                           />
-                          <text 
-                            x="40" 
-                            y={y + 4} 
-                            fill="var(--text-muted)" 
-                            fontSize="11" 
+                          <text
+                            x="40"
+                            y={y + 4}
+                            fill="var(--text-muted)"
+                            fontSize="11"
                             textAnchor="end"
                           >
                             {val}
@@ -291,13 +291,13 @@ export default function Home() {
                       const groupWidth = 60;
                       const groupGap = 12;
                       const xStart = 65 + idx * (groupWidth + groupGap);
-                      
+
                       const barWidth = 22;
-                      
+
                       // Max value on Y is 2400
                       const currHeight = (item.Current_Workforce / 2400) * 250;
                       const reqHeight = (item.Required_Workforce / 2400) * 250;
-                      
+
                       const yCurr = 280 - currHeight;
                       const yReq = 280 - reqHeight;
 
@@ -370,14 +370,14 @@ export default function Home() {
                         </g>
                       );
                     })}
-                    
+
                     {/* Baseline */}
                     <line x1="50" y1="280" x2="780" y2="280" stroke="var(--border-color)" strokeWidth="1.5" />
                   </svg>
 
                   {/* Absolute Tooltip Container */}
                   {tooltip.visible && (
-                    <div 
+                    <div
                       className={`${styles.customTooltip} ${styles.customTooltipVisible}`}
                       style={{ left: `${tooltip.x}px`, top: `${tooltip.y}px`, transform: "translate(-50%, -100%)" }}
                     >
@@ -406,13 +406,13 @@ export default function Home() {
                     </div>
                   </div>
                 </h3>
-                
+
                 <div className={styles.horizontalBarChart}>
                   {sortedByShortfall.map((item) => {
-                    const fillClass = 
+                    const fillClass =
                       item.Skill_Gap_Severity === "High" ? styles.fillHigh :
-                      item.Skill_Gap_Severity === "Medium" ? styles.fillMedium : styles.fillLow;
-                    
+                        item.Skill_Gap_Severity === "Medium" ? styles.fillMedium : styles.fillLow;
+
                     return (
                       <div key={item.Role} className={styles.horizontalRow}>
                         <div className={styles.rowMeta}>
@@ -420,8 +420,8 @@ export default function Home() {
                           <span className={styles.rowVal}>{item.ShortfallPercent.toFixed(1)}%</span>
                         </div>
                         <div className={styles.progressBarTrack}>
-                          <div 
-                            className={`${styles.progressBarFill} ${fillClass}`} 
+                          <div
+                            className={`${styles.progressBarFill} ${fillClass}`}
                             style={{ width: `${item.ShortfallPercent}%` }}
                           />
                         </div>
@@ -439,10 +439,10 @@ export default function Home() {
                     *Bubble size indicates regional workforce shortfall volume
                   </span>
                 </h3>
-                
+
                 <div style={{ position: "relative", flex: 1, display: "flex", flexDirection: "column" }}>
-                  <svg 
-                    viewBox="0 0 1000 350" 
+                  <svg
+                    viewBox="0 0 1000 350"
                     className={styles.svgWorkspace}
                     style={{ width: "100%", height: "290px", overflow: "visible" }}
                   >
@@ -451,19 +451,19 @@ export default function Home() {
                       const y = 280 - (days / 80) * 240;
                       return (
                         <g key={days} opacity={0.85}>
-                          <line 
-                            x1="60" 
-                            y1={y} 
-                            x2="980" 
-                            y2={y} 
-                            stroke="rgba(255,255,255,0.06)" 
-                            strokeWidth="1" 
+                          <line
+                            x1="60"
+                            y1={y}
+                            x2="980"
+                            y2={y}
+                            stroke="rgba(255,255,255,0.06)"
+                            strokeWidth="1"
                           />
-                          <text 
-                            x="50" 
-                            y={y + 4} 
-                            fill="var(--text-muted)" 
-                            fontSize="11" 
+                          <text
+                            x="50"
+                            y={y + 4}
+                            fill="var(--text-muted)"
+                            fontSize="11"
                             textAnchor="end"
                           >
                             {days} days
@@ -477,19 +477,19 @@ export default function Home() {
                       const x = 60 + ((salary - 20000) / 50000) * 900;
                       return (
                         <g key={salary} opacity={0.85}>
-                          <line 
-                            x1={x} 
-                            y1="40" 
-                            x2={x} 
-                            y2="280" 
-                            stroke="rgba(255,255,255,0.06)" 
-                            strokeWidth="1" 
+                          <line
+                            x1={x}
+                            y1="40"
+                            x2={x}
+                            y2="280"
+                            stroke="rgba(255,255,255,0.06)"
+                            strokeWidth="1"
                           />
-                          <text 
-                            x={x} 
-                            y="300" 
-                            fill="var(--text-muted)" 
-                            fontSize="11" 
+                          <text
+                            x={x}
+                            y="300"
+                            fill="var(--text-muted)"
+                            fontSize="11"
                             textAnchor="middle"
                           >
                             £{(salary / 1000)}k
@@ -507,17 +507,17 @@ export default function Home() {
                     {processedData.map((item, idx) => {
                       // Map salary 20k-70k to X 60-960
                       const x = 60 + ((item.Average_Salary_GBP - 20000) / 50000) * 900;
-                      
+
                       // Map Days to Hire 0-80 to Y 280-40
                       const y = 280 - (item.Average_Days_to_Hire / 80) * 240;
-                      
+
                       // Map Shortfall 100-700 to Radius 6-22
                       const r = 6 + ((item.Shortfall - 100) / 600) * 16;
-                      
+
                       // Color schemes per role
                       const colors = [
-                        "#3b82f6", "#8b5cf6", "#ef4444", "#10b981", 
-                        "#f59e0b", "#ec4899", "#06b6d4", "#84cc16", 
+                        "#3b82f6", "#8b5cf6", "#ef4444", "#10b981",
+                        "#f59e0b", "#ec4899", "#06b6d4", "#84cc16",
                         "#14b8a6", "#f43f5e"
                       ];
                       const dotColor = colors[idx % colors.length];
@@ -567,7 +567,7 @@ export default function Home() {
 
                   {/* Absolute Tooltip Container */}
                   {tooltip.visible && (
-                    <div 
+                    <div
                       className={`${styles.customTooltip} ${styles.customTooltipVisible}`}
                       style={{ left: `${tooltip.x}px`, top: `${tooltip.y}px`, transform: "translate(-50%, -100%)" }}
                     >
@@ -597,10 +597,10 @@ export default function Home() {
                 </thead>
                 <tbody>
                   {processedData.map((item) => {
-                    const badgeClass = 
+                    const badgeClass =
                       item.Skill_Gap_Severity === "High" ? styles.badgeHigh :
-                      item.Skill_Gap_Severity === "Medium" ? styles.badgeMedium : styles.badgeLow;
-                    
+                        item.Skill_Gap_Severity === "Medium" ? styles.badgeMedium : styles.badgeLow;
+
                     return (
                       <tr key={item.Role}>
                         <td style={{ fontWeight: 600, color: "var(--text-primary)" }}>{item.Role}</td>
@@ -649,17 +649,17 @@ export default function Home() {
             {/* Strategy Card List */}
             <div className={styles.strategyGrid}>
               {strategies.map((strat, idx) => (
-                <div 
-                  key={idx} 
+                <div
+                  key={idx}
                   className={styles.strategyCard}
                   style={{ animationDelay: `${idx * 50}ms` }}
                 >
                   <div style={{ display: "flex", gap: "1rem", alignItems: "flex-start" }}>
-                    <div 
-                      style={{ 
-                        padding: "0.5rem", 
-                        borderRadius: "8px", 
-                        backgroundColor: "rgba(59, 130, 246, 0.1)", 
+                    <div
+                      style={{
+                        padding: "0.5rem",
+                        borderRadius: "8px",
+                        backgroundColor: "rgba(59, 130, 246, 0.1)",
                         color: "var(--accent-blue)",
                         display: "flex",
                         alignItems: "center",
@@ -679,9 +679,9 @@ export default function Home() {
             </div>
 
             {/* Summary callout */}
-            <div 
-              style={{ 
-                marginTop: "2rem", 
+            <div
+              style={{
+                marginTop: "2rem",
                 background: "linear-gradient(90deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%)",
                 border: "1px solid var(--border-color)",
                 padding: "1.5rem",
