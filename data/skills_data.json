@@ -1,0 +1,92 @@
+[
+  {
+    "Role": "Software Engineer",
+    "Current_Workforce": 1500,
+    "Required_Workforce": 2200,
+    "Average_Days_to_Hire": 45,
+    "Skill_Gap_Severity": "High",
+    "Average_Salary_GBP": 45000,
+    "Remote_Work_Percentage": 60
+  },
+  {
+    "Role": "Data Scientist",
+    "Current_Workforce": 400,
+    "Required_Workforce": 750,
+    "Average_Days_to_Hire": 55,
+    "Skill_Gap_Severity": "High",
+    "Average_Salary_GBP": 50000,
+    "Remote_Work_Percentage": 50
+  },
+  {
+    "Role": "Cybersecurity Analyst",
+    "Current_Workforce": 300,
+    "Required_Workforce": 600,
+    "Average_Days_to_Hire": 60,
+    "Skill_Gap_Severity": "High",
+    "Average_Salary_GBP": 48000,
+    "Remote_Work_Percentage": 40
+  },
+  {
+    "Role": "Cloud Architect",
+    "Current_Workforce": 200,
+    "Required_Workforce": 450,
+    "Average_Days_to_Hire": 50,
+    "Skill_Gap_Severity": "High",
+    "Average_Salary_GBP": 60000,
+    "Remote_Work_Percentage": 70
+  },
+  {
+    "Role": "DevOps Engineer",
+    "Current_Workforce": 350,
+    "Required_Workforce": 600,
+    "Average_Days_to_Hire": 48,
+    "Skill_Gap_Severity": "High",
+    "Average_Salary_GBP": 55000,
+    "Remote_Work_Percentage": 60
+  },
+  {
+    "Role": "IT Support Specialist",
+    "Current_Workforce": 1200,
+    "Required_Workforce": 1300,
+    "Average_Days_to_Hire": 20,
+    "Skill_Gap_Severity": "Low",
+    "Average_Salary_GBP": 28000,
+    "Remote_Work_Percentage": 20
+  },
+  {
+    "Role": "Network Engineer",
+    "Current_Workforce": 500,
+    "Required_Workforce": 650,
+    "Average_Days_to_Hire": 35,
+    "Skill_Gap_Severity": "Medium",
+    "Average_Salary_GBP": 40000,
+    "Remote_Work_Percentage": 30
+  },
+  {
+    "Role": "UX/UI Designer",
+    "Current_Workforce": 450,
+    "Required_Workforce": 600,
+    "Average_Days_to_Hire": 30,
+    "Skill_Gap_Severity": "Medium",
+    "Average_Salary_GBP": 38000,
+    "Remote_Work_Percentage": 50
+  },
+  {
+    "Role": "Project Manager (Tech)",
+    "Current_Workforce": 600,
+    "Required_Workforce": 800,
+    "Average_Days_to_Hire": 40,
+    "Skill_Gap_Severity": "Medium",
+    "Average_Salary_GBP": 45000,
+    "Remote_Work_Percentage": 40
+  },
+  {
+    "Role": "AI/Machine Learning Engineer",
+    "Current_Workforce": 150,
+    "Required_Workforce": 400,
+    "Average_Days_to_Hire": 65,
+    "Skill_Gap_Severity": "High",
+    "Average_Salary_GBP": 58000,
+    "Remote_Work_Percentage": 60
+  }
+]
