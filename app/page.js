@@ -30,12 +30,30 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState("dashboard"); // dashboard or strategies
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, content: null });
+  const [tableSearch, setTableSearch] = useState("");
+  const [sortField, setSortField] = useState(null);
+  const [sortDir, setSortDir] = useState("asc");
 
   // Calculate metrics
   const totalCurrent = rawData.reduce((sum, item) => sum + item.Current_Workforce, 0);
   const totalRequired = rawData.reduce((sum, item) => sum + item.Required_Workforce, 0);
   const totalShortfall = totalRequired - totalCurrent;
   const overallShortfallPercent = (totalShortfall / totalRequired) * 100;
+
+  // Table sort handler
+  const handleSort = (field) => {
+    if (sortField === field) {
+      setSortDir(d => d === "asc" ? "desc" : "asc");
+    } else {
+      setSortField(field);
+      setSortDir("asc");
+    }
+  };
+
+  const sortArrow = (field) => {
+    if (sortField !== field) return " ↕";
+    return sortDir === "asc" ? " ↑" : " ↓";
+  };
 
   // Process data for charts
   const processedData = rawData.map(item => {
@@ -50,6 +68,17 @@ export default function Home() {
 
   // Sort by shortfall percentage for the horizontal chart
   const sortedByShortfall = [...processedData].sort((a, b) => a.ShortfallPercent - b.ShortfallPercent);
+
+  // Filtered + sorted table data
+  const filteredTableData = processedData
+    .filter(item => item.Role.toLowerCase().includes(tableSearch.toLowerCase()))
+    .sort((a, b) => {
+      if (!sortField) return 0;
+      const valA = a[sortField];
+      const valB = b[sortField];
+      if (typeof valA === "string") return sortDir === "asc" ? valA.localeCompare(valB) : valB.localeCompare(valA);
+      return sortDir === "asc" ? valA - valB : valB - valA;
+    });
 
   // Strategy list with matching icons
   const strategies = [
@@ -581,22 +610,42 @@ export default function Home() {
 
             {/* Raw Data Table */}
             <div className={styles.tableContainer}>
-              <h3 className={styles.tableTitle}>Regional Telemetry Data (Full Detail)</h3>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1rem", flexWrap: "wrap", gap: "0.75rem" }}>
+                <h3 className={styles.tableTitle} style={{ margin: 0 }}>Regional Telemetry Data (Full Detail)</h3>
+                <input
+                  type="text"
+                  placeholder="🔍  Search roles..."
+                  value={tableSearch}
+                  onChange={e => setTableSearch(e.target.value)}
+                  style={{
+                    padding: "0.5rem 0.85rem",
+                    borderRadius: "8px",
+                    border: "1px solid var(--border-color)",
+                    background: "rgba(255,255,255,0.05)",
+                    color: "var(--text-primary)",
+                    fontSize: "0.875rem",
+                    outline: "none",
+                    width: "200px"
+                  }}
+                />
+              </div>
               <table className={styles.styledTable}>
                 <thead>
                   <tr>
-                    <th>Job Title</th>
-                    <th>Current workforce</th>
-                    <th>Required workforce</th>
-                    <th>Staff Shortfall</th>
-                    <th>Severity Score</th>
-                    <th>Avg Days to Hire</th>
-                    <th>Avg Salary</th>
-                    <th>Remote Ratio</th>
+                    <th onClick={() => handleSort("Role")} style={{ cursor: "pointer" }}>Job Title{sortArrow("Role")}</th>
+                    <th onClick={() => handleSort("Current_Workforce")} style={{ cursor: "pointer" }}>Current Workforce{sortArrow("Current_Workforce")}</th>
+                    <th onClick={() => handleSort("Required_Workforce")} style={{ cursor: "pointer" }}>Required Workforce{sortArrow("Required_Workforce")}</th>
+                    <th onClick={() => handleSort("Shortfall")} style={{ cursor: "pointer" }}>Staff Shortfall{sortArrow("Shortfall")}</th>
+                    <th onClick={() => handleSort("Skill_Gap_Severity")} style={{ cursor: "pointer" }}>Severity Score{sortArrow("Skill_Gap_Severity")}</th>
+                    <th onClick={() => handleSort("Average_Days_to_Hire")} style={{ cursor: "pointer" }}>Avg Days to Hire{sortArrow("Average_Days_to_Hire")}</th>
+                    <th onClick={() => handleSort("Average_Salary_GBP")} style={{ cursor: "pointer" }}>Avg Salary{sortArrow("Average_Salary_GBP")}</th>
+                    <th onClick={() => handleSort("Remote_Work_Percentage")} style={{ cursor: "pointer" }}>Remote Ratio{sortArrow("Remote_Work_Percentage")}</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {processedData.map((item) => {
+                  {filteredTableData.length === 0 ? (
+                    <tr><td colSpan="8" style={{ textAlign: "center", padding: "2rem", color: "var(--text-muted)" }}>No roles match your search.</td></tr>
+                  ) : filteredTableData.map((item) => {
                     const badgeClass =
                       item.Skill_Gap_Severity === "High" ? styles.badgeHigh :
                         item.Skill_Gap_Severity === "Medium" ? styles.badgeMedium : styles.badgeLow;
