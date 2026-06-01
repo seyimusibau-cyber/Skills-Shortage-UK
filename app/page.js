@@ -80,6 +80,24 @@ export default function Home() {
       return sortDir === "asc" ? valA - valB : valB - valA;
     });
 
+  // CSV Export helper
+  const exportCSV = () => {
+    const headers = ["Role", "Current_Workforce", "Required_Workforce", "Shortfall", "ShortfallPercent", "Skill_Gap_Severity", "Average_Days_to_Hire", "Average_Salary_GBP", "Remote_Work_Percentage"];
+    const rows = processedData.map(item =>
+      headers.map(h => JSON.stringify(item[h] ?? "")).join(",")
+    );
+    const csvContent = [headers.join(","), ...rows].join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", "ne_tech_skills_shortage.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   // Strategy list with matching icons
   const strategies = [
     {
@@ -628,6 +646,26 @@ export default function Home() {
                     width: "200px"
                   }}
                 />
+                <button
+                  onClick={exportCSV}
+                  style={{
+                    padding: "0.5rem 1rem",
+                    borderRadius: "8px",
+                    border: "1px solid rgba(59,130,246,0.4)",
+                    background: "rgba(59,130,246,0.1)",
+                    color: "var(--accent-blue)",
+                    fontSize: "0.875rem",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.4rem",
+                    transition: "background 0.2s"
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.background = "rgba(59,130,246,0.2)"}
+                  onMouseLeave={e => e.currentTarget.style.background = "rgba(59,130,246,0.1)"}
+                >
+                  ⬇ Export CSV
+                </button>
               </div>
               <table className={styles.styledTable}>
                 <thead>
