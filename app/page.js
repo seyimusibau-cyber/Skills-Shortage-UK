@@ -786,6 +786,29 @@ export default function Home() {
           </div>
         )}
       </main>
+      {/* Footer */}
+      <footer style={{
+        gridColumn: "1 / -1",
+        borderTop: "1px solid var(--border-color)",
+        padding: "0.85rem 1.5rem",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        fontSize: "0.75rem",
+        color: "var(--text-muted)",
+        background: "var(--bg-secondary)",
+        flexWrap: "wrap",
+        gap: "0.5rem"
+      }}>
+        <span>📍 North East UK Tech Skills Dashboard &mdash; Data last updated: <strong>June 2026</strong></span>
+        <span>
+          Built by <strong style={{ color: "var(--text-secondary)" }}>Seyi Musibau</strong>
+          &nbsp;·&nbsp;
+          <a href="https://github.com/seyimusibau-cyber/Skills-Shortage-UK" target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent-blue)", textDecoration: "none" }}>
+            GitHub ↗
+          </a>
+        </span>
+      </footer>
     </div>
   );
 }
